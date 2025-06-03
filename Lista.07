@@ -1,0 +1,61 @@
+// Ocorrência de uma sequência em outra sequência
+
+#include <stdio.h>
+
+int contarOcorrencias(int seq1[], int n, int seq2[], int m) {  // Função que conta quantas vezes a primeira sequência ocorre na segunda
+    int i, j, ocorrencias = 0;
+    int encontrou;
+
+    for (i = 0; i <= m - n; i++) {      // Percorre a segunda sequência até onde ainda cabe a primeira sequência
+        encontrou = 1; // Assume que encontrou até provar o contrário
+
+        for (j = 0; j < n; j++) {  // Verifica se todos os elementos da primeira sequência coincidem
+            if (seq2[i + j] != seq1[j]) {
+                encontrou = 0;
+                break;
+            }
+        }
+        
+        if (encontrou) {   // Se encontrou, incrementa o contador
+            ocorrencias++;
+        }
+    }
+
+    return ocorrencias;
+}
+
+int main() {
+    int n, m, i;
+    
+    // Leitura dos tamanhos dos vetores:
+    printf("Digite o tamanho da primeira sequencia (n): ");
+    scanf("%d", &n);
+    printf("Digite o tamanho da segunda sequencia (m), onde m >= n: ");
+    scanf("%d", &m);
+
+    // Verifica se m é maior ou igual a n
+    if (n > m) {
+        printf("Erro: n deve ser menor ou igual a m.\n");
+        return 1; // Encerra o programa com erro
+    }
+
+    int seq1[n], seq2[m];
+
+    printf("Digite os %d elementos da primeira sequencia:\n", n);  // Leitura da primeira sequência
+    for (i = 0; i < n; i++) {
+        printf("Elemento [%d]: ", i);
+        scanf("%d", &seq1[i]);
+    }
+
+    printf("Digite os %d elementos da segunda sequencia:\n", m);      // Leitura da segunda sequência
+    for (i = 0; i < m; i++) {
+        printf("Elemento [%d]: ", i);
+        scanf("%d", &seq2[i]);
+    }
+
+    int resultado = contarOcorrencias(seq1, n, seq2, m);  // Chama a função e exibe o resultado
+
+    printf("A primeira sequencia ocorre %d vez(es) na segunda sequencia.\n", resultado);
+
+    return 0;
+}
