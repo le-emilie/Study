@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+// Função que recebe o endereço de uma variável (ponteiro) e duplica seu valor:
+void duplica(float *x) {
+    *x = 2 * (*x);
+}
+
+int main() {
+    float x = 10; // Declaramos como float, pois a função trabalha com float
+
+    duplica(&x);  // Passamos o endereço de x usando &
+
+    printf("%.2f\n", x);   // Imprimimos x após a duplicação
+
+    return 0;
+}
