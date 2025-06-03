@@ -1,0 +1,36 @@
+//Media aritmetica de um vetor de numeros reais
+
+#include <stdio.h>
+
+float calcularMedia(float vetor[], int tamanho) {  // Função que calcula a média aritmética dos elementos de um vetor
+    float soma = 0.0;
+    int i;
+
+    for (i = 0; i < tamanho; i++) {
+        soma += vetor[i];
+    }
+
+    return soma / tamanho;
+}
+
+int main() {
+    int n, i;
+    float media;
+
+    printf("Digite a quantidade de elementos do vetor: ");    // Leitura do tamanho do vetor
+    scanf("%d", &n);
+
+    float vetor[n]; // Declaração do vetor
+
+    printf("Digite os %d numeros reais:\n", n);  // Leitura dos elementos do vetor
+    for (i = 0; i < n; i++) {
+        printf("Elemento [%d]: ", i);
+        scanf("%f", &vetor[i]);
+    }
+
+    media = calcularMedia(vetor, n);  // Calcula a média
+
+    printf("A media aritmetica dos numeros é: %.2f\n", media);   // Exibe a média
+
+    return 0;
+}
