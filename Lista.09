@@ -1,0 +1,35 @@
+//MInimo e maximo de um vetor
+
+#include <stdio.h>
+
+// Função que calcula o mínimo e máximo de um vetor:
+void CalculaMinimoEMaximo(int vetor[], int tamanho, int *minimo, int *maximo) {
+    // Inicializa minimo e maximo com o primeiro elemento do vetor
+    *minimo = vetor[0];
+    *maximo = vetor[0];
+
+    for (int i = 1; i < tamanho; i++) {  // Percorre o vetor para encontrar minimo e maximo
+        if (vetor[i] < *minimo) {
+            *minimo = vetor[i]; // Atualiza minimo
+        }
+        if (vetor[i] > *maximo) {
+            *maximo = vetor[i]; // Atualiza maximo
+        }
+    }
+}
+
+int main() { 
+    int vetor[] = {10, 5, 8, 20, 3, 15, 7};   // Vetor exemplo (você pode mudar os valores livremente)
+    int tamanho = sizeof(vetor) / sizeof(vetor[0]); // Calcula tamanho do vetor
+
+    int minimo = 0;  // Variáveis para armazenar o minimo e maximo
+    int maximo = 0;
+
+    CalculaMinimoEMaximo(vetor, tamanho, &minimo, &maximo);   // Chama a função passando o vetor e os endereços das variáveis minimo e maximo
+
+    // Exibe o resultado:
+    printf("Menor valor do vetor: %d\n", minimo);
+    printf("Maior valor do vetor: %d\n", maximo);
+
+    return 0;
+}
