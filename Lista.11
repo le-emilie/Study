@@ -1,0 +1,80 @@
+//Listas ligadas
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Definição do nó da lista:
+typedef struct no {
+    int dado;
+    struct no* prox;
+} No;
+
+typedef No* p_no;
+
+// Função para inserir no início:
+p_no adicionar_no_inicio(p_no lista, int x) {
+    p_no novo = malloc(sizeof(No));
+    if (novo == NULL) {
+        printf("Erro de alocação de memória!\n");
+        exit(1);
+    }
+    novo->dado = x;
+    novo->prox = lista;
+    return novo;
+}
+
+// Função para inserir no final:
+p_no adicionar_no_final(p_no lista, int x) {
+    p_no novo = malloc(sizeof(No));
+    if (novo == NULL) {
+        printf("Erro de alocação de memória!\n");
+        exit(1);
+    }
+    novo->dado = x;
+    novo->prox = NULL;
+
+    if (lista == NULL) {
+        return novo; // Lista estava vazia
+    }
+
+    p_no aux = lista;
+    while (aux->prox != NULL) {
+        aux = aux->prox;
+    }
+    aux->prox = novo;
+
+    return lista;
+}
+
+// Função para imprimir a lista:
+void imprimir_lista(p_no lista) {
+    p_no aux = lista;
+    while (aux != NULL) {
+        printf("%d", aux->dado);
+        if (aux->prox != NULL) {
+            printf(" -> ");
+        }
+        aux = aux->prox;
+    }
+    printf("\n");
+}
+int main() {  // Função principal (main)
+    p_no lista = NULL;
+
+    // Construindo a lista na sequência solicitada:
+    lista = adicionar_no_inicio(lista, 1);   // 1
+    lista = adicionar_no_inicio(lista, 2);   // 2 -> 1
+    lista = adicionar_no_final(lista, 3);    // 2 -> 1 -> 3
+
+    printf("Lista final: ");  //// Imprimir resultado
+    imprimir_lista(lista);
+
+    p_no aux;  //// Liberar memória
+    while (lista != NULL) {
+        aux = lista;
+        lista = lista->prox;
+        free(aux);
+    }
+
+    return 0;
+}
