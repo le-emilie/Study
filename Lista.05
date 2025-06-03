@@ -1,0 +1,60 @@
+// Desvio padrão de um vetor de números reais
+
+#include <stdio.h>
+
+// usando o método de Newton-Raphson
+float raiz_quadrada(float numero) {
+    float x = numero;
+    float y = 1.0;
+    float precisao = 0.00001; // Quanto menor, mais preciso
+
+    while ((x - y) > precisao) {
+        x = (x + y) / 2;
+        y = numero / x;
+    }
+
+    return x;
+}
+
+// Função que calcula o desvio padrão com base na fórmula fornecida:
+float calcularDesvioPadrao(float vetor[], int n) {
+    float soma = 0.0;
+    float somaQuadrados = 0.0;
+    float media, desvio;
+
+    for (int i = 0; i < n; i++) {
+        soma += vetor[i];
+        somaQuadrados += vetor[i] * vetor[i];
+    }
+
+    // Aplicando a fórmula:
+    float termo1 = somaQuadrados;
+    float termo2 = (soma * soma) / n;
+
+    desvio = (termo1 - termo2) / (n - 1);
+
+    return raiz_quadrada(desvio);      // Raiz quadrada do resultado
+}
+
+int main() {
+    int n;
+
+    // Leitura do tamanho do vetor:
+    printf("Digite o número de elementos: ");
+    scanf("%d", &n);
+
+    float vetor[n];
+
+    // Leitura dos elementos do vetor
+    printf("Digite os %d números reais:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("Elemento [%d]: ", i);
+        scanf("%f", &vetor[i]);
+    }
+
+    float desvio = calcularDesvioPadrao(vetor, n);   // Calcula o desvio padrão
+
+    printf("O desvio padrao é: %.4f\n", desvio);      // Exibe o resultado
+
+    return 0;
+}
