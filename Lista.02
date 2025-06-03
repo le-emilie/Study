@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+float CalcularDistancia(float x1, float y1, float x2, float y2) {  // Função que calcula a distância entre dois pontos no plano cartesiano
+    float dx = x2 - x1;
+    float dy = y2 - y1;
+    float distancia;
+
+    float soma = (dx * dx) + (dy * dy);  // Calcula (dx^2 + dy^2)
+
+    // Calcula a raiz quadrada manualmente usando o método de aproximação (método de Newton)
+    distancia = soma;
+    float temp = 0.0;
+
+    while (distancia != temp) {
+        temp = distancia;
+        distancia = (soma / temp + temp) / 2;
+    }
+
+    return distancia;
+}
+
+int main() {
+    float x1, y1, x2, y2, distancia;
+
+    // Leitura dos pontos
+    printf("Digite as coordenadas do primeiro ponto (x1 y1): ");
+    scanf("%f %f", &x1, &y1);
+
+    printf("Digite as coordenadas do segundo ponto (x2 y2): ");
+    scanf("%f %f", &x2, &y2);
+
+    distancia = calcularDistancia(x1, y1, x2, y2);     // Calcula a distância
+
+    printf("A distancia entre os pontos é: %.2f\n", distancia);   // Exibe o resultado
+
+    return 0;
+}
