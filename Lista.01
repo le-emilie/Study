@@ -1,0 +1,27 @@
+//Menor numero entre dois inteiros
+#include <stdio.h>
+
+int menor(int a, int b) {  // Função que recebe dois inteiros e retorna o menor deles
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int main() {
+
+    int num1, num2, resultado;    // Declaração das variáveis
+
+    printf("Digite o primeiro numero inteiro: ");
+    scanf("%d", &num1);
+    printf("Digite o segundo numero inteiro: ");
+    scanf("%d", &num2);
+
+    resultado = menor(num1, num2);   // Chamada da função
+
+    
+    printf("O menor numero entre %d e %d é: %d\n", num1, num2, resultado);  // Exibição do resultado
+
+    return 0;
+}
